@@ -31,7 +31,7 @@ def main():
         response = post_delete_request(json)
         print(response.text[:300])
         repeat = input("Got another? (Y/N): ")
-        if repeat == 'n' or repeat == 'N':
+        if str(repeat).lower() != 'y':
             sys.exit('Thanks!')
 
 
