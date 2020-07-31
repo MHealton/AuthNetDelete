@@ -3,24 +3,27 @@ import json
 import requests
 import sys
 
+
+# Gathers auth.net sandbox payment profile from user
 def collect_account():
-    print('Enter the account to be deleted')
-    acct_id = input()
+    acct_id = input('Enter the account to be deleted: ')
     return acct_id
 
 
+# Add merchant authentication data (name, and transactionKey).
+# Resulting data combined into a dictionary
 def append_account_to_dictionary(id):
     name = ''
     trans_key = ''
     return {"deleteCustomerProfileRequest": {"merchantAuthentication": {"name": name, "transactionKey": trans_key}, "customerProfileId": id}}
 
 
-def post_delete_request(account_data):
-    return requests.post('https://apitest.authorize.net/xml/v1/request.api', data=account_data)
-
-
 def create_json_from_dictionary(account):
     return json.dumps(account)
+
+
+def post_delete_request(account_data):
+    return requests.post('https://apitest.authorize.net/xml/v1/request.api', data=account_data)
 
 
 def main():
